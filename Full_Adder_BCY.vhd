@@ -7,7 +7,7 @@
 -- Module Name:    FourBit_Adder_Subtractor_BCY - Behavioral 
 -- Project Name: 	Lab 02
 -- Target Devices:  Nexys 2
--- Tool versions: 
+-- Tool versions:  Structural
 -- Description: 	Four bit adder and subtractor. The basis for an ALU
 --
 -- Dependencies: 
@@ -38,9 +38,10 @@ entity Full_Adder_BCY is
 end Full_Adder_BCY;
 
 architecture Behavioral of Full_Adder_BCY is
-
-begin
-
+	begin
+		--equations from p 240 in text
+		Xout <= Ain xor Bin xor Cin;
+		Cout <= (Ain and Bin) or (Ain and Cin) or (Bin and Cin);
 
 end Behavioral;
 
