@@ -1,0 +1,14 @@
+# 8 bit array, input sqwitches
+NET swIn<0> LOC = "R17";
+NET swIn<1> LOC = "N17";
+NET swIn<2> LOC = "L13";
+NET swIn<3> LOC = "L14";
+NET swIn<4> LOC = "K17";
+NET swIn<5> LOC = "K18";
+NET swIn<6> LOC = "H18";
+NET swIn<7> LOC = "G18";
+#output LEDs
+NET ldOut<4> LOC = "K14";
+NET ldOut<5> LOC = "K15";
+NET ldOut<6> LOC = "J15";
+NET ldOut<7> LOC = "J14";
