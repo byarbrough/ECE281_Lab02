@@ -12,7 +12,7 @@ _Sum = A xor B xor Cin_
 
 _Cout = AB + ACin + BCin_
 
-These equations could be simulated with a testbench to verify that they match the truth table:
+These equations could be simulated with a testbench to verify that they match the truth table (Xout is Sum):
 
 ![alt text](https://github.com/byarbrough/ECE281_Lab02/blob/master/FullAdder_SIM.PNG?raw=true "Full Adder Simulation")
 
