@@ -45,39 +45,41 @@ architecture Structural of FourBit_Adder_Subtractor_BCY is
 				Xout : out STD_LOGIC);
 	end component Full_Adder_BCY;
 	
-signal C_last, C_next : STD_LOGIC_VECTOR (3 downto 0);
+signal Carry : STD_LOGIC_VECTOR (4 downto 0);
 
 begin
 
+	-- this componenet by itself is a one bit adder
 	Bit0: component Full_Adder_BCY
 		port map (Ain => Ain(0),
 					 Bin => Bin(0),
-					 Cin => C_last(0),
-					 Cout => C_next(0),
+					 Cin => Carry(0),
+					 Cout => Carry(1),
 					 Xout => Sum(0)
 					 );
 					 
+	--each componensts adds a bit
 	Bit1: component Full_Adder_BCY
 		port map (Ain => Ain(1),
 					 Bin => Bin(1),
-					 Cin => C_last(1),
-					 Cout => C_next(1),
+					 Cin => Carry(1),
+					 Cout => Carry(2),
 					 Xout => Sum(1)
 					 );
 					 
 	Bit2: component Full_Adder_BCY
 		port map (Ain => Ain(2),
 					 Bin => Bin(2),
-					 Cin => C_last(2),
-					 Cout => C_next(2),
+					 Cin => Carry(2),
+					 Cout => Carry(3),
 					 Xout => Sum(2)
 					 );
 					 
 	Bit3: component Full_Adder_BCY
 		port map (Ain => Ain(3),
 					 Bin => Bin(3),
-					 Cin => C_last(3),
-					 Cout => C_next(3),
+					 Cin => Carry(3),
+					 Cout => Carry(4),
 					 Xout => Sum(3)
 					 );					 
 
