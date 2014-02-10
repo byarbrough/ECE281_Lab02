@@ -2,7 +2,7 @@ ECE281_Lab02
 ============
 ##4-bit 2’s Complement Adder/Subtracter
 
-A Full Adder Takes a total of three inputs: Ain, Bin, and Cin. It then outputs Sum and Cout. The truth table for such a device looks like this:
+A Full Adder (or a 1 bit adder) takes a total of three inputs: Ain, Bin, and Cin. It then outputs Sum and Cout. The truth table for such a device looks like this:
 
 ![alt text](https://github.com/byarbrough/ECE281_Lab02/blob/master/TruthTable.PNG?raw=true "Full Adder Truth Table")
 
