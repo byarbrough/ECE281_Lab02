@@ -33,6 +33,7 @@ use ieee.numeric_std.ALL;
 entity FourBit_Adder_Subtractor_BCY is
     Port ( Ain : in  STD_LOGIC_VECTOR (3 downto 0);
            Bin : in  STD_LOGIC_VECTOR (3 downto 0);
+			  Btn : in STD_LOGIC;
 			  Sum : out STD_LOGIC_VECTOR (3 downto 0));
 end FourBit_Adder_Subtractor_BCY;
 
@@ -51,7 +52,7 @@ signal Bin_Inv : STD_LOGIC_VECTOR (3 downto 0);
 
 begin
 		--if button is pushed, covert Bin to two's comliment for subtraction
-		Bin_Inv <= std_logic_vector(UNSIGNED(not Bin) + 1) when 1>0 else Bin;
+		Bin_Inv <= std_logic_vector(UNSIGNED(not Bin) + 1) when Btn else Bin;
 
 	-- this componenet by itself is a one bit adder
 	Bit0: component Full_Adder_BCY

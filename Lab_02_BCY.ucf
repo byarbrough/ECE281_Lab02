@@ -14,3 +14,6 @@ NET Sum<3> LOC = "K14";
 NET Sum<2> LOC = "K15";
 NET Sum<1> LOC = "J15";
 NET Sum<0> LOC = "J14";
+
+# button
+NET Btn LOC = "H13";
