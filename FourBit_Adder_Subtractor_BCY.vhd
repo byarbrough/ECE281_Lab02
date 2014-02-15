@@ -52,7 +52,7 @@ signal Bin_Inv : STD_LOGIC_VECTOR (3 downto 0);
 
 begin
 		--if button is pushed, covert Bin to two's comliment for subtraction
-		Bin_Inv <= std_logic_vector(UNSIGNED(not Bin) + 1) when Btn else Bin;
+		Bin_Inv <= std_logic_vector(UNSIGNED(not Bin) + 1) when Btn = '1' else Bin;
 
 	-- this componenet by itself is a one bit adder
 	Bit0: component Full_Adder_BCY
