@@ -2,6 +2,7 @@ ECE281_Lab02
 ============
 ##4-bit 2’s Complement Adder/Subtracter
 
+####The Full Adder
 The basic componene of a multiple bit adder is a single full adder.
 A Full Adder (or a 1 bit adder) takes a total of three inputs: Ain, Bin, and Cin. It then outputs Sum and Cout. The truth table for such a device looks like this:
 
@@ -26,3 +27,10 @@ All of the above proved that a single bit full adder does exactly what it is sup
 
 By linking many adders together, an adder of any size can be made. Unfortunately, linking many adders toegether decreases speed linearly because each adder has to wait for the previous adder to pass the Cout before it can add. This can be combated with carry look ahead adders, but for the four bit adder in this lab, the ripple carry format will do just fine.
 
+####Now With Four Bits!
+Having made the full adder compenent, structural VHDL made it simple to link four of the componenets together. By using Standard logic vectors as arrays, each Ain, Bin, Cin, Cout, and Sum could be seperately defined.
+
+####Enabling Subtraction
+Due to the glory of Two's Compliment, subtraction with full adders simply means that Bin had to be converte to Two's Compliment. This was done with an internal signal that NOT Bin + 1; this converted it to a negative binary number.
+
+In order to get the subtracion to work in the same program with the addition, this internal signal was only changed if the push button was pushed.
