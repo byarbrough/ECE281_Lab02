@@ -56,8 +56,7 @@ ARCHITECTURE behavior OF allCombos_testbench_BCY IS
 
  	--Outputs
    signal Sum : std_logic_vector(3 downto 0);
-
- 
+	
 BEGIN
  
 	-- Instantiate the Unit Under Test (UUT)
@@ -76,22 +75,31 @@ BEGIN
       wait for 100 ns;	
 
 		--begin simulations
-		--check adder first
-		for z in 0 to 1 loop
-			for y in 0 to 1 loop
-				for x in 0 to 1 loop
-					for w in 0 to 1 loop
-						Ain(0) <= z;
-						Ain(1) <= y;
-						Ain(2) <= x;
-						Ain(3) <= w;
-							for
-				assert Sum = first+second;
-			end loop;
-		end loop;
 		
+	--check adder first, then subtractor
+--	for Btn in 0 to 1 loop
 
-      wait;
-   end process;
+--											
+	--convert Bin to two's compliment
+	--Bin <= std_logic_vector(UNSIGNED(not Bin) + 1) when Btn = '1' else Bin;
+		
+		La: for i in 0 to 15 loop
+		report "first loop";
+				Lb: for j in 0 to 15 loop
+					Bin <= std_logic_vector(UNSIGNED(Bin)+1);
+					report "second";
+					--assert Sum=Ain+Bin report "error";
+					wait for 100 ns;
+					next;
+				end loop Lb;
+			Ain <= std_logic_vector(UNSIGNED(Ain)+1);
+			next;
+		end loop La;
 
+								
+--											--assert statement
+--											assert IntSum = IntA+IntB report "First = "+IntA+"Second = "+IntB severity ERROR;
+
+		wait;
+	end process;
 END;
