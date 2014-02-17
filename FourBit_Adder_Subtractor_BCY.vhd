@@ -48,8 +48,8 @@ architecture Structural of FourBit_Adder_Subtractor_BCY is
 				Xout : out STD_LOGIC);
 	end component Full_Adder_BCY;
 	
-signal Carry : STD_LOGIC_VECTOR (3 downto 0) ;
-signal Bin_Inv : STD_LOGIC_VECTOR (3 downto 0);
+signal Carry : STD_LOGIC_VECTOR (3 downto 0) :=(others => '0');
+signal Bin_Inv : STD_LOGIC_VECTOR (3 downto 0) :=(others => '0');
 
 begin
 		--if button is pushed, covert Bin to two's comliment for subtraction

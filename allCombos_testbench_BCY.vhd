@@ -55,7 +55,7 @@ ARCHITECTURE behavior OF allCombos_testbench_BCY IS
    signal Btn : std_logic := '0';
 
  	--Outputs
-   signal Sum : std_logic_vector(3 downto 0);
+   signal Sum : std_logic_vector(3 downto 0):= (others => '0');
 	
 BEGIN
  
@@ -72,33 +72,34 @@ BEGIN
    stim_proc: process
    begin		
       -- hold reset state for 100 ns.
-      wait for 100 ns;	
+      wait for 10 ns;	
 
 		--begin simulations
 		
 	--check adder first, then subtractor
 --	for Btn in 0 to 1 loop
-
---											
+									
 	--convert Bin to two's compliment
 	--Bin <= std_logic_vector(UNSIGNED(not Bin) + 1) when Btn = '1' else Bin;
 		
+		--first number
 		La: for i in 0 to 15 loop
-		report "first loop";
+		--second number
 				Lb: for j in 0 to 15 loop
+				--increment Bin
 					Bin <= std_logic_vector(UNSIGNED(Bin)+1);
-					report "second";
-					--assert Sum=Ain+Bin report "error";
-					wait for 100 ns;
+					assert SIGNED(Sum)=SIGNED(Ain)+SIGNED(Bin) report "incorrect sum";
+					--reset sum
+					Sum <= (others => '0');
+					
+					wait for 1 ns;
 					next;
 				end loop Lb;
+				wait for 1 ns;
+			--increment Ain
 			Ain <= std_logic_vector(UNSIGNED(Ain)+1);
 			next;
 		end loop La;
-
-								
---											--assert statement
---											assert IntSum = IntA+IntB report "First = "+IntA+"Second = "+IntB severity ERROR;
 
 		wait;
 	end process;
