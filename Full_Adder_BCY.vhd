@@ -30,18 +30,27 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity Full_Adder_BCY is
-    Port ( Ain : in  STD_LOGIC;
+    Port ( 
+				--first input
+				Ain : in  STD_LOGIC;
+				--second input
            Bin : in  STD_LOGIC;
+			  --carry in
            Cin : in  STD_LOGIC;
+			  --carry out
            Cout : out  STD_LOGIC;
-           Xout : out  STD_LOGIC);
+			  --sum out
+           Xout : out  STD_LOGIC;
+			  --overflow (used in the last bit only)
+			  Ovf : out STD_LOGIC);
 end Full_Adder_BCY;
 
 architecture Behavioral of Full_Adder_BCY is
 	begin
-		--equations from p 240 in text
+		--equations derrived from truth table
 		Xout <= Ain xor Bin xor Cin;
 		Cout <= (Ain and Bin) or (Ain and Cin) or (Bin and Cin);
+		Ovf <= Cin xor ((Ain and Bin) or (Ain and Cin) or (Bin and Cin));
 
 end Behavioral;
 

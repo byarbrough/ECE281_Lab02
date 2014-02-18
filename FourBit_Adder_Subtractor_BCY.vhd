@@ -34,8 +34,8 @@ entity FourBit_Adder_Subtractor_BCY is
     Port ( Ain : in  STD_LOGIC_VECTOR (3 downto 0);
            Bin : in  STD_LOGIC_VECTOR (3 downto 0);
 			  Btn : in STD_LOGIC;
-			  Ovr : out STD_LOGIC;
-			  Sum : out STD_LOGIC_VECTOR (3 downto 0));
+			  Sum : out STD_LOGIC_VECTOR (3 downto 0);
+			  Ovf : out STD_LOGIC_VECTOR(3 downto 0));
 end FourBit_Adder_Subtractor_BCY;
 
 architecture Structural of FourBit_Adder_Subtractor_BCY is
@@ -45,10 +45,11 @@ architecture Structural of FourBit_Adder_Subtractor_BCY is
 				Bin : in STD_LOGIC;
 				Cin : in STD_LOGIC;
 				Cout : out STD_LOGIC;
-				Xout : out STD_LOGIC);
+				Xout : out STD_LOGIC;
+				Ovf : out STD_LOGIC);
 	end component Full_Adder_BCY;
 	
-signal Carry : STD_LOGIC_VECTOR (3 downto 0) :=(others => '0');
+signal Carry : STD_LOGIC_VECTOR (4 downto 0) :=(others => '0');
 signal Bin_Inv : STD_LOGIC_VECTOR (3 downto 0) :=(others => '0');
 
 begin
@@ -57,11 +58,13 @@ begin
 
 	-- this componenet by itself is a one bit adder
 	Bit0: component Full_Adder_BCY
+	--maps each port on the single adder to the logic vector
 		port map (Ain => Ain(0),
 					 Bin => Bin_Inv(0),
 					 Cin => Carry(0),
 					 Cout => Carry(1),
-					 Xout => Sum(0)
+					 Xout => Sum(0),
+					 Ovf => Ovf(0)
 					 );
 					 
 	--each componensts adds a bit
@@ -70,7 +73,8 @@ begin
 					 Bin => Bin_Inv(1),
 					 Cin => Carry(1),
 					 Cout => Carry(2),
-					 Xout => Sum(1)
+					 Xout => Sum(1),
+					 Ovf => Ovf(1)
 					 );
 					 
 	Bit2: component Full_Adder_BCY
@@ -78,16 +82,18 @@ begin
 					 Bin => Bin_Inv(2),
 					 Cin => Carry(2),
 					 Cout => Carry(3),
-					 Xout => Sum(2)
+					 Xout => Sum(2),
+					 Ovf => Ovf(2)
 					 );
 					 
 	Bit3: component Full_Adder_BCY
 		port map (Ain => Ain(3),
 					 Bin => Bin_Inv(3),
 					 Cin => Carry(3),
-					 Cout => Ovr,
-					 Xout => Sum(3)
-					 );					 
+					 Cout => Carry(4),
+					 Xout => Sum(3),
+					 Ovf => Ovf(3)
+					 );	
 
 end Structural;
 

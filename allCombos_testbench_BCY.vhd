@@ -12,7 +12,7 @@
 -- 
 -- VHDL Test Bench Created by ISE for module: FourBit_Adder_Subtractor_BCY
 -- 
--- Dependencies:
+-- Documentation: EI with Dr. Neeble for some ieee imports and workin through stuff. C3C Sabin Park helped with image syntax.
 -- 
 -- Revision:
 -- Revision 0.01 - File Created
@@ -78,30 +78,51 @@ BEGIN
 		--begin simulations
 		
 	--check adder first, then subtractor
-for k in 0 to 1 loop		
+for k in 0 to 1	 loop		
 		
 		--first number
 		La: for i in 0 to 15 loop
 		--second number
 				Lb: for j in 0 to 15 loop
-				--increment Bin
-					Bin <= Bin + "0001";
+				
 					
-						--convert Bin to two's compliment
+					--convert Bin to two's compliment
 					if k = 1 then
 						Bin <= ((not Bin) + "0001");
 					end if;
-					assert Sum=Ain+Bin report "incorrect sum";
+					
+					--assert addition vs subtraction
+					--assert statement
+					if k = 0 then
+						assert Sum=Ain+Bin report "incorrect sum! When Ain = "
+						--reprot Ain and Bin with image
+						& std_logic'image(Ain(3))& std_logic'image(Ain(2))& std_logic'image(Ain(1))& std_logic'image(Ain(0)) & " and Bin = " 
+						& std_logic'image(Bin(3))& std_logic'image(Bin(2))& std_logic'image(Bin(1))& std_logic'image(Bin(0));
+					else
+						assert Sum=Ain-Bin report "incorrect difference when Ain= "
+							& std_logic'image(Ain(3))& std_logic'image(Ain(2))& std_logic'image(Ain(1))& std_logic'image(Ain(0)) & " and Bin = " 
+						& std_logic'image(Bin(3))& std_logic'image(Bin(2))& std_logic'image(Bin(1))& std_logic'image(Bin(0));
+					end if;
+					
+					--convert Bin back
+					if k = 1 then
+						Bin <= ((not Bin) + "0001");
+					end if;
+					
+					--increment Bin
+					Bin <= Bin + "0001";
 
-					wait for 10 ns;
+					wait for 1 ns;
 					next;
 				end loop Lb;
-				wait for 10 ns;
+				wait for 2 ns;
 			--increment Ain
 			Ain <= Ain + "0001";
 			next;
 		end loop La;
+		--increment the button read
 		Btn <= '1';
+		wait for 2 ns;
 	end loop;
 
 		wait;
