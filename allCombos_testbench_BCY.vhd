@@ -30,7 +30,8 @@ USE ieee.std_logic_1164.ALL;
  
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
-USE ieee.numeric_std.ALL;
+USE ieee.std_logic_arith.ALL;
+USE ieee.std_logic_unsigned.ALL;
  
 ENTITY allCombos_testbench_BCY IS
 END allCombos_testbench_BCY;
@@ -77,29 +78,31 @@ BEGIN
 		--begin simulations
 		
 	--check adder first, then subtractor
---	for Btn in 0 to 1 loop
-									
-	--convert Bin to two's compliment
-	--Bin <= std_logic_vector(UNSIGNED(not Bin) + 1) when Btn = '1' else Bin;
+for k in 0 to 1 loop		
 		
 		--first number
 		La: for i in 0 to 15 loop
 		--second number
 				Lb: for j in 0 to 15 loop
 				--increment Bin
-					Bin <= std_logic_vector(UNSIGNED(Bin)+1);
-					assert SIGNED(Sum)=SIGNED(Ain)+SIGNED(Bin) report "incorrect sum";
-					--reset sum
-					Sum <= (others => '0');
+					Bin <= Bin + "0001";
 					
-					wait for 1 ns;
+						--convert Bin to two's compliment
+					if k = 1 then
+						Bin <= ((not Bin) + "0001");
+					end if;
+					assert Sum=Ain+Bin report "incorrect sum";
+
+					wait for 10 ns;
 					next;
 				end loop Lb;
-				wait for 1 ns;
+				wait for 10 ns;
 			--increment Ain
-			Ain <= std_logic_vector(UNSIGNED(Ain)+1);
+			Ain <= Ain + "0001";
 			next;
 		end loop La;
+		Btn <= '1';
+	end loop;
 
 		wait;
 	end process;
