@@ -36,3 +36,9 @@ This four bit adder was implemented to the Nexys 2 with the eight switches being
 Due to the glory of Two's Compliment, subtraction with full adders simply means that Bin had to be converted to Two's Compliment. This was done with an internal signal "NOT Bin + 1"; this converted it to a negative binary number, which, when added, was the same as subtraction.
 
 Bin was only converted to Two's Compliment if a push button was pressed. This meant that the four bit adder could work on the same board and program as the subtracter.
+
+####The Final Test
+
+![alt text](https://github.com/byarbrough/ECE281_Lab02/blob/master/loopedSim.PNG?raw=true "Full Testbench")
+
+The above diagram runs through every possible combination of inputs for both addition and subtraction using for loops. It would be extremely tedious to attempt and compare every values one by one to a truth table. Instead, an "assert" command was used. This would have outputted a message to the bottom console if a value was incorrect, as well as what values threw the error. Because this never occurred, I know that the design works!
