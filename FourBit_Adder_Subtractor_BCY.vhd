@@ -94,6 +94,10 @@ begin
 					 Xout => Sum(3),
 					 Ovf => Ovf(3)
 					 );	
+					 
+			--would have been better to do
+				--Ovf as signal
+				-- Ovf <= Carry(3) xor Carry(4);
 
 end Structural;
 

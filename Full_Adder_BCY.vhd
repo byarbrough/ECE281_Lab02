@@ -48,9 +48,12 @@ end Full_Adder_BCY;
 architecture Behavioral of Full_Adder_BCY is
 	begin
 		--equations derrived from truth table
+		--compute sum
 		Xout <= Ain xor Bin xor Cin;
+		--compute carry
 		Cout <= (Ain and Bin) or (Ain and Cin) or (Bin and Cin);
-		Ovf <= Cin xor ((Ain and Bin) or (Ain and Cin) or (Bin and Cin));
+		--compute overflow
+		Ovf <= Cin xnor ((Ain and Bin) or (Ain and Cin) or (Bin and Cin));
 
 end Behavioral;
 
