@@ -73,7 +73,8 @@ BEGIN
    stim_proc: process
    begin		
       -- hold reset state for 100 ns.
-      wait for 10 ns;	
+      wait for 10 ns;
+		report " Start Test ";
 
 		--begin simulations
 		
@@ -124,7 +125,7 @@ for k in 0 to 1	 loop
 		Btn <= '1';
 		wait for 2 ns;
 	end loop;
-
+	report " Test Complete! ";
 		wait;
 	end process;
 END;
